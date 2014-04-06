@@ -1,0 +1,13 @@
+require 'thor'
+require './lib/github_repos_analyser'
+class GitHubAnalyserCLI < Thor
+  desc "favourite_language USER_NAME", "finds the favourite programming language of USER_NAME GitHub repositories"
+  def favourite_language(user_name)
+    begin
+      puts GitHubReposAnalyser.new.get_favourite_language_by_user user_name
+    rescue RestClient::ResourceNotFound, URI::InvalidURIError, RestClient::Exception => ex
+      puts ex.message
+    end 
+  end
+end
+GitHubAnalyserCLI.start(ARGV)
