@@ -13,7 +13,7 @@ describe GitHubReposAnalyser do
     "https://api.github.com/users/#{user_name}/repos"
   end
   
-context 'given steveklabnik with 3 Ruby, 1 JavaScript and 1 Shell repos' do
+  context 'given steveklabnik with 3 Ruby, 1 JavaScript and 1 Shell repos' do
     let (:response_body) {"[{\"language\":\"Ruby\"},
                             {\"language\":\"Ruby\"},
                             {\"language\":\"Ruby\"},
