@@ -16,17 +16,12 @@ class GitHubReposAnalyser
       response = RestClient.get(url,{accept: 'application/vnd.github.beta+json'})
       json = JSON.parse(response)
     end
-
+    
     def json_to_language_counts(json)
-      language_counts = Hash.new(0)
-      json.each do |repo| 
-        if (!repo['language'].nil? and !language_counts.key? repo['language'])
-          language_counts[repo['language']] = 1
-        elsif (!repo['language'].nil? and language_counts.key? repo['language'])
-          language_counts[repo['language']] += 1
-        end
+      language_counts = json.inject(Hash.new(0)) do |hsh, repo|
+        hsh[repo['language']] += 1 unless repo['language'].nil?
+        hsh
       end
-      language_counts
     end
 
     def format_language_counts(language_counts)
