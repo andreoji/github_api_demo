@@ -26,8 +26,13 @@ class GitHubReposAnalyser
 
     def format_language_counts(language_counts)
       return "#{@user_name} has no favourite programming language defined\." if language_counts.empty?
-      language = language_counts.select {|k,v| v == language_counts.values.max}.keys.join(',')
-      language.include?(',') ? "#{language} are the favourite programming languages of user #{@user_name}" : 
-      "#{language} is the favourite programming language of user #{@user_name}"
+      language = language_counts
+                  .select {|k,v| v == language_counts.values.max}
+                  .keys
+                  .join(',')
+      
+      language.include?(',') ?
+        "#{language} are the favourite programming languages of user #{@user_name}" : 
+        "#{language} is the favourite programming language of user #{@user_name}"
     end
 end
