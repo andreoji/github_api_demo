@@ -58,7 +58,7 @@ describe GitHubReposAnalyser do
         .with(headers: headers)
         .to_return(status: 200, body: response_body)
     end
-    it 'should find Steves favourite language to be Ruby' do
+    it 'should find Steves favourite languages to be Ruby,JavaScript' do
       repos_analyser
         .get_favourite_language_by_user(valid_user_name)
         .should == "Ruby,JavaScript are the favourite programming languages of user steveklabnik"
